@@ -710,8 +710,12 @@ public class GMRFSkyrideLikelihood extends TreeDistribution /*OldAbstractCoalesc
 		storedWeightMatrix = weightMatrix.copy();
         storedLogFieldLikelihood = logFieldLikelihood;
 
-        System.arraycopy(intervals, 0, storedIntervals, 0, intervals.length);
+        if (intervals != null) {
+            System.arraycopy(intervals, 0, storedIntervals, 0, intervals.length);
+        }
+        if (lineageCounts != null) {
         System.arraycopy(lineageCounts, 0, storedLineageCounts, 0, lineageCounts.length);
+        }
         storedIntervalsKnown = intervalsKnown;
         storedIntervalCount = intervalCount;
 	}
@@ -725,8 +729,10 @@ public class GMRFSkyrideLikelihood extends TreeDistribution /*OldAbstractCoalesc
 		weightMatrix = storedWeightMatrix;
         logFieldLikelihood = storedLogFieldLikelihood;
 
-        System.arraycopy(storedIntervals, 0, intervals, 0, storedIntervals.length);
-        System.arraycopy(storedLineageCounts, 0, lineageCounts, 0, storedLineageCounts.length);
+        if (intervals != null)
+            System.arraycopy(storedIntervals, 0, intervals, 0, storedIntervals.length);
+        if (lineageCounts != null)
+            System.arraycopy(storedLineageCounts, 0, lineageCounts, 0, storedLineageCounts.length);
         intervalsKnown = storedIntervalsKnown;
         intervalCount = storedIntervalCount;
 	}
